@@ -13,4 +13,4 @@ Bt=abs(B)
 Betas(1)=Bt(1,:)*Betas
 Betas(2)=Bt(2,:)*Betas
 Betas(3)=Bt(3,:)*Betas
-Bi=abs(sepc(B))//Autovalores de B
+Bi=abs(spec(B))//Autovalores de B
