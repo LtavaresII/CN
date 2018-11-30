@@ -27,4 +27,6 @@ function [t,L1,L2] = heunSistema(a,b,h,L10,L20)
     end
 endfunction
 
-[t,L1,L2] = heunSistema(0,20,0.5,0,0)
+[t,L1h,L2h] = heunSistema(0,20,0.5,0,0)
+
+plot(t',[L1h,L2h])
