@@ -1,0 +1,30 @@
+function z = gL1(t,L1,L2)
+    z = -0.004918*sqrt(1960*L1) + 0.2218*(8 + 6*sin(t))
+endfunction
+
+function z = gL2(t,L1,L2)
+    z = -0.0069*sqrt(1960*L2) + 0.004918*sqrt(1960*L1)
+endfunction
+
+function [t,L1,L2] = heunSistema(a,b,h,L10,L20)
+    t = a:h:b
+    n = length(t);
+    L1(1) = L10
+    L2(1) = L20
+    
+    for i = 1:n-1
+        k1L1 = gL1(t(i),L1(i),L2(i))
+        k1L2 = gL2(t(i),L1(i),L2(i))
+        
+        k2L1 = gL1(t(i) + h,L1(i) + k1L1*h,L2(i) + k1L2*h)
+        k2L2 = gL2(t(i) + h,L1(i) + k1L1*h,L2(i) + k1L2*h)
+        
+        kL1 = (k1L1 + k2L1)/2
+        kL2 = (k1L2 + k2L2)/2
+        
+        L1(i+1) = L1(i) + kL1*h;
+        L2(i+1) = L2(i) + kL2*h;
+    end
+endfunction
+
+[t,L1,L2] = heunSistema(0,20,0.5,0,0)
